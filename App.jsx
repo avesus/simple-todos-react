@@ -23,6 +23,7 @@ App = React.createClass({
   },
 
   renderTasks() {
+    console.log(this.data.tasks);
     return this.data.tasks.map((task) => {
       const currentUserId = this.data.currentUser && this.data.currentUser._id;
       const showPrivateButton = task.owner === currentUserId;
@@ -38,7 +39,7 @@ App = React.createClass({
     return (
       <div className="container">
         <header>
-          <h1>Todo List ({this.data.incompleteCount})</h1>
+          <h1>QuickPaster MVP ({this.data.incompleteCount})</h1>
 
           <label className="hide-completed">
             <input
@@ -72,12 +73,12 @@ App = React.createClass({
     event.preventDefault();
  
     // Find the text field via the React ref
-    var text = React.findDOMNode(this.refs.textInput).value.trim();
+    var text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
 
     Meteor.call("addTask", text); 
  
     // Clear form
-    React.findDOMNode(this.refs.textInput).value = "";
+    ReactDOM.findDOMNode(this.refs.textInput).value = "";
   },
 
   toggleHideCompleted() {
